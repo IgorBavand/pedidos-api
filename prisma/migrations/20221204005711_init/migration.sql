@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Produto` ADD COLUMN `preco` DOUBLE NOT NULL DEFAULT 0;
