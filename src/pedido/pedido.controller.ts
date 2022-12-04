@@ -1,15 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
-import { UpdatePedidoDto } from './dto/update-pedido.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { PedidoEntity } from './entities/pedido.entity';
 
@@ -33,13 +24,13 @@ export class PedidoController {
     return this.pedidoService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePedidoDto: UpdatePedidoDto) {
-    return this.pedidoService.update(+id, updatePedidoDto);
+  @Patch(':id/send')
+  async sendPedido(@Param('id') id: string): Promise<PedidoEntity> {
+    return this.pedidoService.sendPedido(+id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.pedidoService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updatePedidoDto: UpdatePedidoDto) {
+  //   return this.pedidoService.update(+id, updatePedidoDto);
+  // }
 }

@@ -3,6 +3,7 @@ import { Pedido } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePedidoDto } from '../dto/create-pedido.dto';
 import { PedidoEntity } from '../entities/pedido.entity';
+import { EStatusPedido } from '../enums/status-pedido.enum';
 
 @Injectable()
 export class PedidoRepository {
@@ -15,12 +16,14 @@ export class PedidoRepository {
           select: {
             produto: {
               select: {
+                id: true,
                 nome: true,
                 preco: true,
               },
             },
           },
         },
+        cliente: true,
       },
     });
   }
@@ -64,7 +67,31 @@ export class PedidoRepository {
         id,
       },
       include: {
-        produtos: true,
+        produtos: {
+          select: {
+            produto: true,
+          },
+        },
+        cliente: {
+          select: {
+            id: true,
+            nome: true,
+            cidade: true,
+            rua: true,
+            email: true,
+          },
+        },
+      },
+    });
+  }
+
+  async sendPedido(id: number): Promise<PedidoEntity> {
+    return this.prisma.pedido.update({
+      where: {
+        id,
+      },
+      data: {
+        statusPedido: EStatusPedido.ENVIADO,
       },
     });
   }

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
-import { UpdatePedidoDto } from './dto/update-pedido.dto';
 import { PedidoEntity } from './entities/pedido.entity';
 import { PedidoRepository } from './repositories/pedido.repository';
 
@@ -16,15 +15,15 @@ export class PedidoService {
     return this.pedidoRepository.findAll();
   }
 
-  findOne(id: number) {
+  async findOne(id: number): Promise<PedidoEntity> {
     return this.pedidoRepository.findOne(id);
   }
 
-  update(id: number, updatePedidoDto: UpdatePedidoDto) {
-    return `This action updates a #${id} pedido`;
+  async sendPedido(id: number): Promise<PedidoEntity> {
+    return this.pedidoRepository.sendPedido(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pedido`;
-  }
+  // update(id: number, updatePedidoDto: UpdatePedidoDto) {
+  //   return `This action updates a #${id} pedido`;
+  // }
 }
