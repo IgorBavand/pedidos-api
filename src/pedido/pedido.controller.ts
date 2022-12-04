@@ -11,6 +11,7 @@ import { PedidoService } from './pedido.service';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
 import { UpdatePedidoDto } from './dto/update-pedido.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { PedidoEntity } from './entities/pedido.entity';
 
 @ApiTags('Pedidos')
 @Controller('pedidos')
@@ -28,7 +29,7 @@ export class PedidoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<PedidoEntity> {
     return this.pedidoService.findOne(+id);
   }
 

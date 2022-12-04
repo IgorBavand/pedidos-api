@@ -17,7 +17,7 @@ export class PedidoService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pedido`;
+    return this.pedidoRepository.findOne(id);
   }
 
   update(id: number, updatePedidoDto: UpdatePedidoDto) {
