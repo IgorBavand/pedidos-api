@@ -33,7 +33,7 @@ model Produto {
 model Cliente {
   id        Int      @id @default(autoincrement())
   nome      String
-  email     String
+  email     String   @unique()
   cidade    String
   rua       String
   createdAt DateTime @default(now())
