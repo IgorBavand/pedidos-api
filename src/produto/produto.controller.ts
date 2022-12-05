@@ -12,7 +12,7 @@ import { CreateProdutoDto } from './dto/create-produto.dto';
 import { UpdateProdutoDto } from './dto/update-produto.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Produtos')
+@ApiTags('Produto')
 @Controller('produto')
 export class ProdutoController {
   constructor(private readonly produtoService: ProdutoService) {}

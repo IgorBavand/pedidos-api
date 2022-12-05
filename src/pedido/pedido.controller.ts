@@ -1,18 +1,10 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
-import { ApiBody, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PedidoEntity } from './entities/pedido.entity';
 
-@ApiTags('Pedidos')
+@ApiTags('Pedido')
 @Controller('pedidos')
 export class PedidoController {
   constructor(private readonly pedidoService: PedidoService) {}
@@ -38,9 +30,4 @@ export class PedidoController {
   async sendPedido(@Param('id') id: string): Promise<PedidoEntity> {
     return this.pedidoService.sendPedido(+id);
   }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updatePedidoDto: UpdatePedidoDto) {
-  //   return this.pedidoService.update(+id, updatePedidoDto);
-  // }
 }
