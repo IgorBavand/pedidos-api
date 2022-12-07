@@ -51,3 +51,12 @@ model ProdutosPedido {
   @@id([pedidoId, produtoId])
   @@map("produtos_pedidos")
 }
+
+model Usuario {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  email String @unique
+  senha String
+
+  @@map("usuarios")
+}
