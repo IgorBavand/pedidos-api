@@ -27,10 +27,6 @@ export class UsuarioService {
     return this.usuarioRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
-  }
-
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
     return `This action updates a #${id} usuario`;
   }
