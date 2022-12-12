@@ -4,9 +4,16 @@ import { PedidoModule } from './pedido/pedido.module';
 import { ProdutoModule } from './produto/produto.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { AutenticacaoModule } from './autenticacao/autenticacao.module';
 
 @Module({
-  imports: [PedidoModule, ProdutoModule, ClienteModule, UsuarioModule],
+  imports: [
+    PedidoModule,
+    ProdutoModule,
+    ClienteModule,
+    UsuarioModule,
+    AutenticacaoModule,
+  ],
   controllers: [],
   providers: [PrismaService],
 })

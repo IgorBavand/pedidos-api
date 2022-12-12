@@ -27,8 +27,12 @@ export class UsuarioService {
     return this.usuarioRepository.findAll();
   }
 
+  async findByEmail(email: string): Promise<UsuarioEntity> {
+    return this.usuarioRepository.findByEmail(email);
+  }
+
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+    return `This action updates a #${id} usuario ${updateUsuarioDto}`;
   }
 
   remove(id: number) {
