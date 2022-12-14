@@ -10,6 +10,8 @@ import { UnauthorizedInterceptor } from './common/errors/interceptors/unauthoriz
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('API DE PEDIDOS')
     .setDescription('API de pedidos com nestjs + rabbit + prisma')
@@ -23,14 +25,14 @@ async function bootstrap() {
   app.useGlobalInterceptors(new UnauthorizedInterceptor());
   app.useGlobalInterceptors(new NotFoundInterceptor());
 
-  // Pipes
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-      forbidNonWhitelisted: true,
-    }),
-  );
+  //VERIFICAR A UTILIZAÇÃO DO PIPES POIS ESTÁ BLOQUEDANDO PRODUTOS
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     transform: true,
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //   }),
+  // );
 
   await app.listen(process.env.PORT);
 }
